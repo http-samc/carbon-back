@@ -140,6 +140,7 @@ const Styles = StyleSheet.create({
         borderRadius: 5,
         borderWidth: 1,
         borderColor: Colors.text,
+        height: '65%',
     },
     row: {
         flexDirection: 'row',

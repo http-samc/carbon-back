@@ -1,7 +1,7 @@
 import { ScrollView, Text, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-
+import * as SecureStore from 'expo-secure-store';
 import SquareStatistic from '../components/SquareStatistic';
 import Row from '../components/Row';
 import Styles from '../theme/styles';
@@ -16,35 +16,31 @@ interface Contract {
     rate: number;
 }
 
-var credits = 0;
-var dollars = 0;
-
 const ContractHistory = () => {
     const [loading, setLoading] = useState(true);
-    const [contracts, setContracts] = useState<Contract[]>([]);
+    const [contracts, setContracts] = useState(0);
+    const [credits, setCredits] = useState(0);
+    const [dollars, setDollars] = useState(0);
 
     const getContracts = async () => {
-        // TODO: Get contracts from API
-        setContracts([
-            {
-                start: 1598420000000,
-                end: 1698420000000,
-                credits: 100,
-                price: 100,
-                rate: 1,
-            },
-            {
-                start: 1528420000000,
-                end: 1698430000000,
-                credits: 200,
-                price: 100,
-                rate: 2,
-            }
-        ]);
+        const email = await SecureStore.getItemAsync('email');
+        const password = await SecureStore.getItemAsync('password');
+
+        const response = await fetch(`http://localhost:8080/api/carbon-back/contracts?email=${email}&password=${password}`);
+        const data = await response.json();
+
+        if (data.wasSuccessful) { setContracts(data.contracts); }
+
+        var c = 0;
+        var d = 0;
+        // @ts-ignore
         contracts.forEach(contract => {
-            credits += contract.credits;
-            dollars += contract.price;
+            console.log(contract);
+            c += contract.credits;
+            d += contract.price;
         });
+        setCredits(c);
+        setDollars(d);
         setLoading(false);
     }
 
