@@ -60,6 +60,7 @@ const Purchase = () => {
                 Keep in mind that the duration of each contract is limited to one year. After this period, the Carbon Credit will be destroyed as the ton
                 of CO2 is no longer in the atmosphere. At this point, will have to purchase more Carbon Credits to continue lowering your footprint.
             </Text>
+            {/* @ts-ignore */}
             <StripeProvider publishableKey='pk_test_51KQ8BeL1Sbu4VnBadepvuKhlBEyPg6eHW8IHCTcQ8rCLXnXFefa6bUAS1zPJXkuQ5W2XnYzxbcf5OthLW4QRBnoB00xj47hBzW'>
                 <Checkout amount={qty * rate} />
             </StripeProvider>

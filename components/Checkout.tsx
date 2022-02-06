@@ -15,7 +15,7 @@ const Checkout = (props: Props) => {
     const order = async () => {
         try {
             const finalAmount = props.amount > 1 ? props.amount : 1;
-            const response = await fetch("http://localhost:8080/api/carbon-back/order", {
+            const response = await fetch("https://www.smrth.dev/api/carbon-back/order", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
