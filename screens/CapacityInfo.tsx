@@ -34,7 +34,7 @@ const CapacityInfo = () => {
 
     const requestCapacity = async () => {
         try {
-            linking.openURL('mailto:capacity@carbonback.com?subject=Capacity Request');
+            linking.openURL('mailto:capacity@carbonback.com?subject=Capacity%20Request').catch(() => { return; });
         }
         catch (e) {
             return;

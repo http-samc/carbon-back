@@ -52,9 +52,9 @@ const Sales = () => {
             <SafeAreaView style={Styles.salesContainer}>
                 <Text style={[Styles.h1, { marginBottom: 5 }]}>Overall Sales</Text>
                 <View style={{ flexDirection: 'column', alignItems: 'center' }}>
-                    <SquareStatistic text={data.usd} units={'dollars'} size={150} />
-                    <SquareStatistic text={data.credits} units={'credits'} size={150} />
-                    <SquareStatistic text={data.avg_rate} units={'avg. rate'} size={150} />
+                    <SquareStatistic text={data.usd} units={'dollars'} />
+                    <SquareStatistic text={data.credits} units={'credits'} />
+                    <SquareStatistic text={data.avg_rate} units={'avg. rate'} />
                 </View>
                 <KeyboardAvoidingView
                     behavior={Platform.OS === "ios" ? "padding" : "height"}
