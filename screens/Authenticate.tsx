@@ -76,6 +76,7 @@ const Authenticate = () => {
             if (data.wasSuccessful) {
                 await SecureStore.setItemAsync('email', userEmail.toLowerCase());
                 await SecureStore.setItemAsync('password', userPass.toLowerCase());
+                await SecureStore.setItemAsync('user-type', data.userType);
 
                 // @ts-ignore
                 navigation.navigate('Info');
@@ -104,6 +105,9 @@ const Authenticate = () => {
                         onChangeText={(text) => setUserEmail(text)}
                         value={userEmail}
                         placeholder="Email"
+                        autoCapitalize='none'
+                        autoCorrect={false}
+                        keyboardType='email-address'
                     />
                     <TextInput
                         style={Styles.authInput}

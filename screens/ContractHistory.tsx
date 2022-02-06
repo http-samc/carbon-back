@@ -18,7 +18,7 @@ interface Contract {
 
 const ContractHistory = () => {
     const [loading, setLoading] = useState(true);
-    const [contracts, setContracts] = useState(0);
+    const [contracts, setContracts] = useState([] as Contract[]);
     const [credits, setCredits] = useState(0);
     const [dollars, setDollars] = useState(0);
 

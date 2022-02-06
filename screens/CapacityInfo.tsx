@@ -5,6 +5,7 @@ import Colors from '../theme/colors';
 import Styles from '../theme/styles';
 import * as linking from 'expo-linking';
 import LoadingView from '../components/LoadingView';
+import * as SecureStore from 'expo-secure-store';
 
 interface Response {
     usage: number;
@@ -13,14 +14,18 @@ interface Response {
 
 const CapacityInfo = () => {
     const [loading, setLoading] = useState(true);
-    const [data, setData] = useState<Response>({ usage: 0, capacity: 0 });
+    const [data, setData] = useState<Response>({ usage: 0, capacity: 0.001 });
 
     const getData = async () => {
-        // TODO: Get data from API
-        setData({
-            usage: 100,
-            capacity: 1000,
-        });
+        const email = await SecureStore.getItemAsync('email');
+        const password = await SecureStore.getItemAsync('password');
+
+        const response = await fetch(`http://localhost:8080/api/carbon-back/capacity?email=${email}&password=${password}`);
+        const data = await response.json();
+
+        if (data.wasSuccessful) {
+            setData({ usage: data.usage, capacity: data.capacity });
+        }
         setLoading(false);
     }
 
@@ -55,7 +60,7 @@ const CapacityInfo = () => {
                 <Text style={[Styles.h1, { marginBottom: 5 }]}>Capacity Report</Text>
                 <Text style={[Styles.h3, { marginBottom: 20 }]}>as of {getDate(Date.now())}</Text>
             </View>
-            <View>
+            <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                 <CircularProgress
                     percent={Math.round(data.usage / data.capacity * 100)}
                     textFontColor={Colors.primary}
