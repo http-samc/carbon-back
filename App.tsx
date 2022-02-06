@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { ToastProvider } from 'react-native-fast-toast'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
@@ -28,52 +27,55 @@ export default function App() {
   const loaded = useFonts({
     MontserratRegular: require('./assets/fonts/Montserrat-Regular.ttf'),
     MontserratBold: require('./assets/fonts/Montserrat-Bold.ttf'),
+    BebasNeueRegular: require('./assets/fonts/BebasNeue-Regular.ttf')
   });
 
   if (!loaded)
     return null
 
   return (
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let c = focused ? Colors.primary : Colors.secondary;
-            let rn = route.name
+    <ToastProvider>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused, color, size }) => {
+              let c = focused ? Colors.primary : Colors.secondary;
+              let rn = route.name
 
-            if (rn == "ContractHistory")
-              return <FontAwesome5 name={'file-invoice-dollar'} size={24} color={c} />
-            else if (rn == "Info")
-              return <Feather name={'info'} size={24} color={c} />
-            else if (rn == "Money")
-              return <MaterialIcons name={'attach-money'} size={24} color={c} />
-          },
-          tabBarButton: [
-            "Authenticate",
-          ].includes(route.name)
-            ? () => {
-              return null
-            }
-            : undefined,
-          tabBarShowLabel: false,
-          headerShown: false,
-          // tabBarStyle: Styles.navBar
-        })
-        }
-        initialRouteName={"Authenticate"}
-      >
-        <Tab.Screen
-          name="Authenticate"
-          component={Authenticate}
-          options={{
-            tabBarStyle: { display: "none" },
-          }}
-        />
+              if (rn == "ContractHistory")
+                return <FontAwesome5 name={'file-invoice-dollar'} size={24} color={c} />
+              else if (rn == "Info")
+                return <Feather name={'info'} size={24} color={c} />
+              else if (rn == "Money")
+                return <MaterialIcons name={'attach-money'} size={24} color={c} />
+            },
+            tabBarButton: [
+              "Authenticate",
+            ].includes(route.name)
+              ? () => {
+                return null
+              }
+              : undefined,
+            tabBarShowLabel: false,
+            headerShown: false,
+            // tabBarStyle: Styles.navBar
+          })
+          }
+          initialRouteName={"Authenticate"}
+        >
+          <Tab.Screen
+            name="Authenticate"
+            component={Authenticate}
+            options={{
+              tabBarStyle: { display: "none" },
+            }}
+          />
 
-        <Tab.Screen name="ContractHistory" component={ContractHistory} />
-        <Tab.Screen name="Info" component={Info} />
-        <Tab.Screen name="Money" component={Money} />
-      </Tab.Navigator>
-    </NavigationContainer>
+          <Tab.Screen name="ContractHistory" component={ContractHistory} />
+          <Tab.Screen name="Info" component={Info} />
+          <Tab.Screen name="Money" component={Money} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </ToastProvider>
   );
 }

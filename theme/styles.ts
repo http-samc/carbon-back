@@ -15,6 +15,11 @@ const Styles = StyleSheet.create({
     },
 
     // Header styles & utils
+    statementText: {
+        fontFamily: 'BebasNeueRegular',
+        fontSize: 95,
+        color: Colors.text,
+    },
     h2: {
         fontFamily: 'MontserratBold',
         color: Colors.secondary,
@@ -33,7 +38,7 @@ const Styles = StyleSheet.create({
     footer: {
         color: Colors.darkGrey,
         fontFamily: 'MontserratRegular',
-        fontSize: 12,
+        fontSize: 14,
         position: 'absolute',
         bottom: 30,
     },
@@ -83,6 +88,34 @@ const Styles = StyleSheet.create({
         width: 100,
         flexDirection: 'row',
         justifyContent: 'center',
+    },
+
+    // PurchaseImpact.tsx
+    impactContainer: {
+        flex: 1,
+    },
+    impactButtonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        padding: 5,
+        width: 280,
+        marginVertical: 10,
+        alignSelf: 'center',
+    },
+    impactButton: {
+        width: 120,
+        borderColor: Colors.secondary,
+        borderWidth: 2,
+        padding: 10,
+        borderRadius: 5,
+        flexDirection: 'row',
+        justifyContent: 'center',
+    },
+    impactButtonText: {
+        color: Colors.secondary,
+        fontFamily: 'MontserratBold',
+        fontSize: 18,
     }
 });
 

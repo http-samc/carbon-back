@@ -1,4 +1,4 @@
-import { Text, TextInput, View, Switch, TouchableWithoutFeedback, ScrollView, KeyboardAvoidingView, TouchableOpacity, Image } from 'react-native';
+import { Text, TextInput, View, Switch, Platform, ScrollView, KeyboardAvoidingView, TouchableOpacity, Image } from 'react-native';
 import React, { useState } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { useNavigation } from '@react-navigation/core';
@@ -6,46 +6,60 @@ import { useNavigation } from '@react-navigation/core';
 import Styles from '../theme/styles';
 import Colors from '../theme/colors';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useToast } from 'react-native-fast-toast';
 
 const Authenticate = () => {
     const navigation = useNavigation();
+    const toast = useToast();
 
     // State vars
     const [userType, setUserType] = useState('buyer');
     const [userEmail, setUserEmail] = useState('');
     const [userPass, setUserPass] = useState('');
-
     const [isEnabled, setIsEnabled] = useState(false);
 
     // Functions
     const signUp = async () => {
         try {
+            if (!userEmail.includes('@') || userPass == '') {
+                toast.show('Please enter a valid email and password.');
+                return;
+            }
+
             await SecureStore.setItemAsync('user-type', isEnabled ? 'seller' : 'buyer');
-            // TODO: Sign up API call
+            // TODO: Sign up API call, handle existing user
             // @ts-ignore
             navigation.navigate('Info');
         }
         catch (e) {
-            console.log(e);
+            toast.show('Error signing up.');
         }
     }
 
     // Functions
     const signIn = async () => {
         try {
-            await SecureStore.setItemAsync('user-type', isEnabled ? 'seller' : 'buyer');
-            // TODO: Sign up API call
+            if (!userEmail.includes('@') || userPass == '') {
+                toast.show('Please enter a valid email and password.');
+                return;
+            }
+
+            // TODO: Sign in API call, handle non-existing user, store UID
             // @ts-ignore
             navigation.navigate('Info');
         }
         catch (e) {
-            console.log(e);
+            toast.show('Error signing up.');
         }
     }
 
     return (
         <SafeAreaView style={Styles.authWrapper}>
-            <KeyboardAvoidingView style={Styles.authContainer}>
+            <KeyboardAvoidingView
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+
+                style={Styles.authContainer}
+            >
                 <Image source={require('../assets/carbon_back.png')} style={Styles.authLogo} />
 
                 <TextInput
@@ -60,6 +74,7 @@ const Authenticate = () => {
                     onChangeText={(text) => setUserPass(text)}
                     value={userPass}
                     placeholder="Password"
+                    secureTextEntry={true}
                 >
                 </TextInput>
 
