@@ -23,7 +23,7 @@ const Styles = StyleSheet.create({
     h2: {
         fontFamily: 'MontserratBold',
         color: Colors.secondary,
-        fontSize: 24,
+        fontSize: 20,
     },
     h3: {
         fontFamily: 'MontserratBold',
@@ -41,6 +41,11 @@ const Styles = StyleSheet.create({
         fontSize: 14,
         position: 'absolute',
         bottom: 30,
+    },
+    text: {
+        color: Colors.text,
+        fontFamily: 'MontserratRegular',
+        fontSize: 12,
     },
 
     // Authenticate.tsx
@@ -116,6 +121,27 @@ const Styles = StyleSheet.create({
         color: Colors.secondary,
         fontFamily: 'MontserratBold',
         fontSize: 18,
+    },
+
+    // ContractHistory.tsx
+    contractHistoryStatsWrapper: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+    },
+    contractHistoryTable: {
+        // flex: 1,
+        padding: 10,
+        margin: 15,
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: Colors.text,
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 5,
     }
 });
 
