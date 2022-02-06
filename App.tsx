@@ -2,7 +2,7 @@ import { ToastProvider } from 'react-native-fast-toast'
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
-import { useFonts } from 'expo-font';
+import * as Font from 'expo-font';
 
 import Styles from './theme/styles';
 import Colors from './theme/colors';
@@ -12,21 +12,32 @@ import Info from './components/screen-handlers/Info';
 import Money from './components/screen-handlers/Money';
 import Authenticate from './screens/Authenticate';
 import ContractHistory from './screens/ContractHistory';
+import { useEffect, useState } from 'react';
+import LoadingView from './components/LoadingView';
 
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+  const [fontLoading, setFontLoading] = useState(true);
 
-  // Configure fonts
-  const loaded = useFonts({
-    MontserratRegular: require('./assets/fonts/Montserrat-Regular.ttf'),
-    MontserratBold: require('./assets/fonts/Montserrat-Bold.ttf'),
-    BebasNeueRegular: require('./assets/fonts/BebasNeue-Regular.ttf')
-  });
+  const loadFonts = async () => {
+    await Font.loadAsync({
+      MontserratRegular: require('./assets/fonts/Montserrat-Regular.ttf'),
+      MontserratBold: require('./assets/fonts/Montserrat-Bold.ttf'),
+      BebasNeueRegular: require('./assets/fonts/BebasNeue-Regular.ttf')
+    });
+    console.log('Fonts loaded');
+    setFontLoading(false);
+  };
 
-  if (!loaded)
-    return null
+  useEffect(() => { loadFonts() }, []);
+
+  if (fontLoading) {
+    return (
+      <LoadingView />
+    )
+  }
 
   return (
     <ToastProvider>
