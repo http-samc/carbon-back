@@ -39,7 +39,7 @@ export default function App() {
         <Tab.Navigator
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
-              let c = focused ? Colors.primary : Colors.secondary;
+              let c = focused ? Colors.primary : Colors.primaryVariant;
               let rn = route.name
 
               if (rn == "ContractHistory")

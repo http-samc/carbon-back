@@ -67,16 +67,14 @@ const Authenticate = () => {
                     onChangeText={(text) => setUserEmail(text)}
                     value={userEmail}
                     placeholder="Email"
-                >
-                </TextInput>
+                />
                 <TextInput
                     style={Styles.authInput}
                     onChangeText={(text) => setUserPass(text)}
                     value={userPass}
                     placeholder="Password"
                     secureTextEntry={true}
-                >
-                </TextInput>
+                />
 
                 <View style={[Styles.authInput, Styles.selectUserRoleContainer]}>
                     <Text style={Styles.h4}>Buy</Text>

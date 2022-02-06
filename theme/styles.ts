@@ -142,6 +142,61 @@ const Styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 5,
+    },
+
+    // Purchase.tsx
+    purchaseContainer: {
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        height: '100%',
+    },
+    qtyContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 5,
+        width: 280,
+        marginVertical: 10,
+        alignSelf: 'center',
+    },
+    qtyInput: {
+        color: Colors.primary,
+        fontFamily: 'BebasNeueRegular',
+        fontSize: 100,
+    },
+    purchaseDescription: {
+        width: '70%',
+        maxWidth: 300,
+        fontFamily: 'MontserratRegular',
+        textAlign: 'center',
+    },
+    descImportant: {
+        color: Colors.primary,
+        fontFamily: 'MontserratBold',
+    },
+    purchaseTotal: {
+        color: Colors.primary,
+        fontFamily: 'MontserratBold',
+        fontSize: 18,
+        marginBottom: 20,
+    },
+    purchaseButton: {
+        position: 'absolute',
+        bottom: 30,
+        width: 100,
+        borderColor: Colors.secondary,
+        borderWidth: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 10,
+        borderRadius: 5,
+    },
+    purchaseButtonText: {
+        color: Colors.secondary,
+        fontFamily: 'MontserratBold',
+        fontSize: 18,
     }
 });
 

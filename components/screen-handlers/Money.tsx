@@ -17,13 +17,13 @@ const Money = () => {
 
     if (redirect == 'buyer') {
         return (
-            <Sales />
+            <Purchase />
         )
     }
 
     else if (redirect == 'seller') {
         return (
-            <Purchase />
+            <Sales />
         )
     }
 
