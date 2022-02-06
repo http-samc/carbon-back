@@ -4,6 +4,7 @@ import Styles from '../theme/styles';
 import SquareStatistic from '../components/SquareStatistic';
 import { useToast } from 'react-native-fast-toast';
 import LoadingView from '../components/LoadingView';
+import * as SecureStore from 'expo-secure-store';
 
 interface Response {
     usd: number;
@@ -30,12 +31,17 @@ const Sales = () => {
     }
 
     const getData = async () => {
-        // TODO: Get data from API
-        setData({
-            usd: 100,
-            credits: 1000,
-            avg_rate: 0.5,
-        });
+        const email = await SecureStore.getItemAsync('email');
+        const password = await SecureStore.getItemAsync('password');
+
+        const response = await fetch(`http://localhost:8080/api/carbon-back/overall?email=${email}&password=${password}`);
+        const data = await response.json();
+
+        if (data.wasSuccessful) {
+            console.log(data.avg_rate)
+            setData({ usd: data.usd, credits: data.credits, avg_rate: data.avg_rate });
+        }
+
         setLoading(false);
     }
 
