@@ -20,7 +20,7 @@ const Checkout = (props: Props) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ amount: finalAmount, name: 'John Doe' }), // TODO: UID here
+                body: JSON.stringify({ amount: finalAmount, uid: 'asdhjk123jas' }), // TODO: UID here
             });
             const data = await response.json();
             if (!response.ok) {
