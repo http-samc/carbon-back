@@ -43,14 +43,16 @@ export default function App() {
                 return <FontAwesome5 name={'info-circle'} size={24} color={c} />
               else if (rn == "Money")
                 return <FontAwesome5 name={'money-check-alt'} size={24} color={c} />
+              return <FontAwesome5 name={'sign-out-alt'} size={24} color={c} />
+
             },
-            tabBarButton: [
-              "Authenticate",
-            ].includes(route.name)
-              ? () => {
-                return null
-              }
-              : undefined,
+            // tabBarButton: [
+            //   "Authenticate",
+            // ].includes(route.name)
+            //   ? () => {
+            //     return null
+            //   }
+            //   : undefined,
             tabBarShowLabel: false,
             headerShown: false,
             // tabBarStyle: Styles.navBar
