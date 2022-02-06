@@ -4,6 +4,7 @@ import CircularProgress from '../components/CircularProgress';
 import Colors from '../theme/colors';
 import Styles from '../theme/styles';
 import * as linking from 'expo-linking';
+import LoadingView from '../components/LoadingView';
 
 interface Response {
     usage: number;
@@ -41,6 +42,12 @@ const CapacityInfo = () => {
     }
 
     useEffect(() => { getData() }, [loading])
+
+    if (loading) {
+        return (
+            <LoadingView />
+        )
+    }
 
     return (
         <SafeAreaView style={Styles.capacityInfoContainer}>

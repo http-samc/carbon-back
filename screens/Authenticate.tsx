@@ -21,10 +21,10 @@ const Authenticate = () => {
     // Functions
     const signUp = async () => {
         try {
-            if (!userEmail.includes('@') || userPass == '') {
-                toast.show('Please enter a valid email and password.');
-                return;
-            }
+            // if (!userEmail.includes('@') || userPass == '') {
+            //     toast.show('Please enter a valid email and password.');
+            //     return;
+            // }
 
             await SecureStore.setItemAsync('user-type', isEnabled ? 'seller' : 'buyer');
             // TODO: Sign up API call, handle existing user

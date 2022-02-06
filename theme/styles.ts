@@ -71,7 +71,6 @@ const Styles = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        // backgroundColor: '#121212',
     },
     authInput: {
         borderColor: Colors.primary,
@@ -81,7 +80,6 @@ const Styles = StyleSheet.create({
         padding: 10,
         color: Colors.text,
         margin: 5,
-        // backgroundColor: '#000'
     },
     selectUserRoleContainer: {
         flexDirection: 'row',
@@ -221,8 +219,41 @@ const Styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 10,
         marginBottom: 20,
-    }
+    },
 
+    // Sales.tsx
+    salesContainer: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: '100%',
+    },
+    payoutButton: {
+        width: 350,
+        borderColor: Colors.secondary,
+        borderWidth: 1,
+        padding: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        marginBottom: 20,
+    },
+    payoutWrapper: {
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+    },
+    payoutInput: {
+        borderColor: Colors.secondary,
+        borderWidth: 1,
+        borderRadius: 5,
+        width: 350,
+        padding: 10,
+        color: Colors.text,
+        margin: 5,
+    },
 });
 
 export default Styles;

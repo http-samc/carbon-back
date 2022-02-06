@@ -5,11 +5,12 @@ import Colors from '../theme/colors';
 interface Props {
     text: any;
     units: string;
+    size?: number;
 }
 
 const SquareStatistic = (props: Props) => {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, props.size ? { width: props.size, height: props.size } : {}]}>
             <Text style={styles.text}>{props.text}</Text>
             <Text style={styles.units}>{props.units}</Text>
         </View>
