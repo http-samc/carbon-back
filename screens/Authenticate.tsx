@@ -39,8 +39,8 @@ const Authenticate = () => {
 
             const data = await response.json();
             if (data.wasSuccessful) {
-                await SecureStore.setItemAsync('email', userEmail);
-                await SecureStore.setItemAsync('password', userPass);
+                await SecureStore.setItemAsync('email', userEmail.toLowerCase());
+                await SecureStore.setItemAsync('password', userPass.toLowerCase());
 
                 // @ts-ignore
                 navigation.navigate('Info');
@@ -74,8 +74,8 @@ const Authenticate = () => {
 
             const data = await response.json();
             if (data.wasSuccessful) {
-                await SecureStore.setItemAsync('email', userEmail);
-                await SecureStore.setItemAsync('password', userPass);
+                await SecureStore.setItemAsync('email', userEmail.toLowerCase());
+                await SecureStore.setItemAsync('password', userPass.toLowerCase());
 
                 // @ts-ignore
                 navigation.navigate('Info');

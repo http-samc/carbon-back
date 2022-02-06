@@ -113,7 +113,7 @@ const Styles = StyleSheet.create({
         alignSelf: 'center',
     },
     impactButton: {
-        width: 120,
+        width: 130,
         borderColor: Colors.secondary,
         borderWidth: 2,
         padding: 10,
