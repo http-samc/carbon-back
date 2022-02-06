@@ -17,7 +17,7 @@ const Styles = StyleSheet.create({
     // Header styles & utils
     statementText: {
         fontFamily: 'BebasNeueRegular',
-        fontSize: 95,
+        fontSize: 85,
         color: Colors.text,
     },
     h1: {

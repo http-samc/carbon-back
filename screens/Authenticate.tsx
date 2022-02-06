@@ -1,4 +1,4 @@
-import { Text, TextInput, View, Switch, Platform, ScrollView, KeyboardAvoidingView, TouchableOpacity, Image } from 'react-native';
+import { Text, TextInput, View, Switch, Platform, TouchableWithoutFeedback, KeyboardAvoidingView, TouchableOpacity, Image, Keyboard } from 'react-native';
 import React, { useState } from 'react';
 import * as SecureStore from 'expo-secure-store';
 import { useNavigation } from '@react-navigation/core';
@@ -54,58 +54,60 @@ const Authenticate = () => {
     }
 
     return (
-        <SafeAreaView style={Styles.authWrapper}>
-            <KeyboardAvoidingView
-                behavior={Platform.OS === "ios" ? "padding" : "height"}
+        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+            <SafeAreaView style={Styles.authWrapper}>
+                <KeyboardAvoidingView
+                    behavior={Platform.OS === "ios" ? "padding" : "height"}
 
-                style={Styles.authContainer}
-            >
-                <Image source={require('../assets/carbon_back.png')} style={Styles.authLogo} />
+                    style={Styles.authContainer}
+                >
+                    <Image source={require('../assets/carbon_back.png')} style={Styles.authLogo} />
 
-                <TextInput
-                    style={Styles.authInput}
-                    onChangeText={(text) => setUserEmail(text)}
-                    value={userEmail}
-                    placeholder="Email"
-                />
-                <TextInput
-                    style={Styles.authInput}
-                    onChangeText={(text) => setUserPass(text)}
-                    value={userPass}
-                    placeholder="Password"
-                    secureTextEntry={true}
-                />
-
-                <View style={[Styles.authInput, Styles.selectUserRoleContainer]}>
-                    <Text style={Styles.h4}>Buy</Text>
-                    <Switch
-                        trackColor={{ false: Colors.red, true: Colors.green }}
-                        thumbColor={Colors.white}
-                        ios_backgroundColor={Colors.red}
-                        onValueChange={() => setIsEnabled(previousState => !previousState)}
-                        value={isEnabled}
+                    <TextInput
+                        style={Styles.authInput}
+                        onChangeText={(text) => setUserEmail(text)}
+                        value={userEmail}
+                        placeholder="Email"
                     />
-                    <Text style={Styles.h4}>Sell</Text>
-                </View>
+                    <TextInput
+                        style={Styles.authInput}
+                        onChangeText={(text) => setUserPass(text)}
+                        value={userPass}
+                        placeholder="Password"
+                        secureTextEntry={true}
+                    />
 
-                <View style={Styles.authSubmitContainer}>
-                    <TouchableOpacity
-                        style={[Styles.authInput, Styles.authSubmitButton]}
-                        onPress={signUp}
-                    >
-                        <Text style={Styles.h3}>Sign Up</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={[Styles.authInput, Styles.authSubmitButton]}
-                        onPress={signIn}
-                    >
-                        <Text style={Styles.h3}>Sign In</Text>
-                    </TouchableOpacity>
-                </View>
-            </KeyboardAvoidingView>
-            <Text style={Styles.footer}>made with 💚 & ☕️</Text>
-        </SafeAreaView>
+                    <View style={[Styles.authInput, Styles.selectUserRoleContainer]}>
+                        <Text style={Styles.h4}>Buy</Text>
+                        <Switch
+                            trackColor={{ false: Colors.red, true: Colors.green }}
+                            thumbColor={Colors.white}
+                            ios_backgroundColor={Colors.red}
+                            onValueChange={() => setIsEnabled(previousState => !previousState)}
+                            value={isEnabled}
+                        />
+                        <Text style={Styles.h4}>Sell</Text>
+                    </View>
+
+                    <View style={Styles.authSubmitContainer}>
+                        <TouchableOpacity
+                            style={[Styles.authInput, Styles.authSubmitButton]}
+                            onPress={signUp}
+                        >
+                            <Text style={Styles.h3}>Sign Up</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity
+                            style={[Styles.authInput, Styles.authSubmitButton]}
+                            onPress={signIn}
+                        >
+                            <Text style={Styles.h3}>Sign In</Text>
+                        </TouchableOpacity>
+                    </View>
+                </KeyboardAvoidingView>
+                <Text style={Styles.footer}>made with 💚 & ☕️</Text>
+            </SafeAreaView>
+        </TouchableWithoutFeedback>
     );
-};
+}
 
 export default Authenticate;

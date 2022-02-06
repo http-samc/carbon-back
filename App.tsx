@@ -4,11 +4,6 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather, MaterialIcons, FontAwesome5 } from '@expo/vector-icons';
 import { useFonts } from 'expo-font';
 
-// info - feather (PI || CI)
-// attach-money - material (Purchase || Sales)
-// file-invoice-dollar - FA5 (Contract)
-// ignore authentice screen
-
 import Styles from './theme/styles';
 import Colors from './theme/colors';
 
@@ -39,15 +34,15 @@ export default function App() {
         <Tab.Navigator
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused, color, size }) => {
-              let c = focused ? Colors.primary : Colors.primaryVariant;
+              let c = focused ? Colors.primary : Colors.secondary;
               let rn = route.name
 
               if (rn == "ContractHistory")
                 return <FontAwesome5 name={'file-invoice-dollar'} size={24} color={c} />
               else if (rn == "Info")
-                return <Feather name={'info'} size={24} color={c} />
+                return <FontAwesome5 name={'info-circle'} size={24} color={c} />
               else if (rn == "Money")
-                return <MaterialIcons name={'attach-money'} size={24} color={c} />
+                return <FontAwesome5 name={'money-check-alt'} size={24} color={c} />
             },
             tabBarButton: [
               "Authenticate",

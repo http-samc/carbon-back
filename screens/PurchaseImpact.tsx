@@ -41,6 +41,8 @@ const PurchaseImpact = () => {
     }
     return (
         <SafeAreaView style={Styles.impactContainer}>
+            <Text style={[Styles.h1, { marginBottom: 5, alignSelf: 'center' }]}>Your Impact</Text>
+
             <ScrollView showsVerticalScrollIndicator={false}>
                 <Text style={Styles.statementText}>You've removed <Text style={[Styles.statementText, { color: Colors.primary }]}>{CO2} tons</Text> of CO2 with Carbon Back <Text style={[Styles.statementText, { color: Colors.primary }]}>this year</Text>.</Text>
             </ScrollView>
