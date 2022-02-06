@@ -15,7 +15,7 @@ const PurchaseImpact = () => {
         const email = await SecureStore.getItemAsync('email');
         const password = await SecureStore.getItemAsync('password');
 
-        const response = await fetch(`http://localhost:8080/api/carbon-back/overall?email=${email}&password=${password}`);
+        const response = await fetch(`https://www.smrth.dev/api/carbon-back/overall?email=${email}&password=${password}`);
         const data = await response.json();
 
         if (data.wasSuccessful) {
@@ -27,8 +27,7 @@ const PurchaseImpact = () => {
 
     const getNFT = async () => {
         const email = await SecureStore.getItemAsync('email');
-        console.log(email)
-        linking.openURL('http://localhost:8080/api/carbon-back/' + email);
+        linking.openURL('https://www.smrth.dev/api/carbon-back/' + email);
     }
 
     const share = async () => {
@@ -54,7 +53,7 @@ const PurchaseImpact = () => {
             <Text style={[Styles.h1, { marginBottom: 5, alignSelf: 'center' }]}>Your Impact</Text>
 
             <ScrollView showsVerticalScrollIndicator={false}>
-                <Text style={Styles.statementText}>You've removed <Text style={[Styles.statementText, { color: Colors.primary }]}>{CO2} ton{CO2 > 1 ? 's' : ''}</Text> of CO2 with Carbon Back <Text style={[Styles.statementText, { color: Colors.primary }]}>this year</Text>.</Text>
+                <Text style={Styles.statementText}>You've removed <Text style={[Styles.statementText, { color: Colors.primary }]}>{CO2} ton{CO2 != 1 ? 's' : ''}</Text> of CO2 with Carbon Back <Text style={[Styles.statementText, { color: Colors.primary }]}>this year</Text>.</Text>
             </ScrollView>
             <View style={Styles.impactButtonContainer}>
                 <TouchableOpacity style={Styles.impactButton} onPress={getNFT}>

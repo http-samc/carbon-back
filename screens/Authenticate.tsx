@@ -27,7 +27,7 @@ const Authenticate = () => {
             }
 
             await SecureStore.setItemAsync('user-type', isEnabled ? 'seller' : 'buyer');
-            const response = await fetch('http://localhost:8080/api/carbon-back/signup', {
+            const response = await fetch('https://www.smrth.dev/api/carbon-back/signup', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -41,8 +41,8 @@ const Authenticate = () => {
             if (data.wasSuccessful) {
                 await SecureStore.setItemAsync('email', userEmail.toLowerCase());
                 await SecureStore.setItemAsync('password', userPass.toLowerCase());
-                setUserEmail('');
-                setUserPass('');
+                // setUserEmail('');
+                // setUserPass('');
                 // @ts-ignore
                 navigation.navigate('Info');
             }
@@ -64,7 +64,7 @@ const Authenticate = () => {
                 return;
             }
 
-            const response = await fetch('http://localhost:8080/api/carbon-back/auth', {
+            const response = await fetch('https://www.smrth.dev/api/carbon-back/auth', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

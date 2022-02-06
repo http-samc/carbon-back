@@ -17,19 +17,18 @@ const Purchase = () => {
     const toast = useToast();
 
     const getData = async () => {
-        var response = await fetch('http://localhost:8080/api/carbon-back/availability');
+        var response = await fetch('https://www.smrth.dev/api/carbon-back/availability');
         var data = await response.json();
 
         if (data.wasSuccessful) {
             maxQty = data.credits;
         }
 
-        response = await fetch('http://localhost:8080/api/carbon-back/rate');
+        response = await fetch('https://www.smrth.dev/api/carbon-back/rate');
         data = await response.json();
 
         if (data.wasSuccessful) {
             setRate(data.rate);
-            console.log(rate);
         }
 
         setLoading(false);

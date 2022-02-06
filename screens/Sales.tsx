@@ -34,12 +34,11 @@ const Sales = () => {
         const email = await SecureStore.getItemAsync('email');
         const password = await SecureStore.getItemAsync('password');
 
-        const response = await fetch(`http://localhost:8080/api/carbon-back/overall?email=${email}&password=${password}`);
+        const response = await fetch(`https://www.smrth.dev/api/carbon-back/overall?email=${email}&password=${password}`);
         const data = await response.json();
 
         if (data.wasSuccessful) {
-            console.log(data.avg_rate)
-            setData({ usd: data.usd, credits: data.credits, avg_rate: data.avg_rate });
+            setData({ usd: data.usd, credits: data.credits, avg_rate: data.avg_rate === null ? 0 : data.avg_rate });
         }
 
         setLoading(false);

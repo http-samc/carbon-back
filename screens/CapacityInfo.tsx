@@ -20,10 +20,10 @@ const CapacityInfo = () => {
         const email = await SecureStore.getItemAsync('email');
         const password = await SecureStore.getItemAsync('password');
 
-        const response = await fetch(`http://localhost:8080/api/carbon-back/capacity?email=${email}&password=${password}`);
+        const response = await fetch(`https://www.smrth.dev/api/carbon-back/capacity?email=${email}&password=${password}`);
         const data = await response.json();
 
-        if (data.wasSuccessful) {
+        if (data.wasSuccessful && data.capacity !== 0) {
             setData({ usage: data.usage, capacity: data.capacity });
         }
         setLoading(false);

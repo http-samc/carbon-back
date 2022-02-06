@@ -26,7 +26,7 @@ const ContractHistory = () => {
         const email = await SecureStore.getItemAsync('email');
         const password = await SecureStore.getItemAsync('password');
 
-        const response = await fetch(`http://localhost:8080/api/carbon-back/contracts?email=${email}&password=${password}`);
+        const response = await fetch(`https://www.smrth.dev/api/carbon-back/contracts?email=${email}&password=${password}`);
         const data = await response.json();
 
         if (data.wasSuccessful) { setContracts(data.contracts); }
@@ -35,7 +35,6 @@ const ContractHistory = () => {
         var d = 0;
         // @ts-ignore
         contracts.forEach(contract => {
-            console.log(contract);
             c += contract.credits;
             d += contract.price;
         });
