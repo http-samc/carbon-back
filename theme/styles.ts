@@ -183,7 +183,7 @@ const Styles = StyleSheet.create({
     },
     purchaseButton: {
         position: 'absolute',
-        bottom: 30,
+        bottom: 10,
         width: 100,
         borderColor: Colors.secondary,
         borderWidth: 1,
