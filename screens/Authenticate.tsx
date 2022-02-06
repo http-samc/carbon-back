@@ -21,15 +21,34 @@ const Authenticate = () => {
     // Functions
     const signUp = async () => {
         try {
-            // if (!userEmail.includes('@') || userPass == '') {
-            //     toast.show('Please enter a valid email and password.');
-            //     return;
-            // }
+            if (!userEmail.includes('@') || userPass == '') {
+                toast.show('Please enter a valid email and password.');
+                return;
+            }
 
             await SecureStore.setItemAsync('user-type', isEnabled ? 'seller' : 'buyer');
-            // TODO: Sign up API call, handle existing user
-            // @ts-ignore
-            navigation.navigate('Info');
+            const response = await fetch('http://localhost:8080/api/carbon-back/signup', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: userEmail.toLowerCase(),
+                    password: userPass,
+                    userType: isEnabled ? 'seller' : 'buyer',
+                })
+            });
+
+            const data = await response.json();
+            if (data.wasSuccessful) {
+                await SecureStore.setItemAsync('email', userEmail);
+                await SecureStore.setItemAsync('password', userPass);
+
+                // @ts-ignore
+                navigation.navigate('Info');
+            }
+            else {
+                toast.show(data.message);
+            }
+
         }
         catch (e) {
             toast.show('Error signing up.');
@@ -44,9 +63,26 @@ const Authenticate = () => {
                 return;
             }
 
-            // TODO: Sign in API call, handle non-existing user, store UID
-            // @ts-ignore
-            navigation.navigate('Info');
+            const response = await fetch('http://localhost:8080/api/carbon-back/auth', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({
+                    email: userEmail.toLowerCase(),
+                    password: userPass,
+                })
+            });
+
+            const data = await response.json();
+            if (data.wasSuccessful) {
+                await SecureStore.setItemAsync('email', userEmail);
+                await SecureStore.setItemAsync('password', userPass);
+
+                // @ts-ignore
+                navigation.navigate('Info');
+            }
+            else {
+                toast.show(data.message);
+            }
         }
         catch (e) {
             toast.show('Error signing up.');

@@ -50,7 +50,7 @@ const Sales = () => {
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={Styles.salesContainer}>
-                <Text style={[Styles.h1, { marginBottom: 5 }]}>Overall Sales</Text>
+                <Text style={[Styles.h1, { marginBottom: 5 }]}>Lifetime Sales</Text>
                 <View style={{ flexDirection: 'column', alignItems: 'center' }}>
                     <SquareStatistic text={data.usd} units={'dollars'} />
                     <SquareStatistic text={data.credits} units={'credits'} />

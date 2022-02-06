@@ -1,19 +1,47 @@
 import { KeyboardAvoidingView, Platform, SafeAreaView, Keyboard, TouchableWithoutFeedback, Text, TextInput, TouchableOpacity, View } from 'react-native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Styles from '../theme/styles';
 import { AntDesign } from '@expo/vector-icons';
 import Colors from '../theme/colors';
 import { useToast } from 'react-native-fast-toast';
 import Checkout from '../components/Checkout';
 import { StripeProvider } from '@stripe/stripe-react-native';
+import LoadingView from '../components/LoadingView';
 
 var maxQty = 10;
-var rate = 0.5;
 
 const Purchase = () => {
     const [qty, setQty] = useState(1);
+    const [rate, setRate] = useState(0.05);
+    const [loading, setLoading] = useState(true);
     const toast = useToast();
 
+    const getData = async () => {
+        var response = await fetch('http://localhost:8080/api/carbon-back/availability');
+        var data = await response.json();
+
+        if (data.wasSuccessful) {
+            maxQty = data.credits;
+        }
+
+        response = await fetch('http://localhost:8080/api/carbon-back/rate');
+        data = await response.json();
+
+        if (data.wasSuccessful) {
+            setRate(data.rate);
+            console.log(rate);
+        }
+
+        setLoading(false);
+    }
+
+    useEffect(() => { getData() }, [loading])
+
+    if (loading) {
+        return (
+            <LoadingView />
+        )
+    }
     return (
         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
             <SafeAreaView style={Styles.purchaseContainer}>
@@ -51,7 +79,7 @@ const Purchase = () => {
                 <Text style={[Styles.purchaseDescription, { marginBottom: 20, textAlign: 'center' }]}>
                     You are purchasing <Text style={Styles.descImportant}>{qty}</Text> Carbon {qty > 1 ? 'Credits' : 'Credit'} at the current market rate of <Text style={Styles.descImportant}>{rate}</Text> CC/$ (Carbon Credits per US Dollar).
                 </Text>
-                <Text style={Styles.purchaseTotal}>Order Total: ${qty * rate}</Text>
+                <Text style={Styles.purchaseTotal}>Order Total: ${qty / rate}</Text>
 
                 <Text style={[Styles.h2, { marginBottom: 10 }]}>Details</Text>
                 <Text style={Styles.purchaseDescription}>
@@ -61,7 +89,7 @@ const Purchase = () => {
                 </Text>
                 {/* @ts-ignore */}
                 <StripeProvider publishableKey='pk_test_51KQ8BeL1Sbu4VnBadepvuKhlBEyPg6eHW8IHCTcQ8rCLXnXFefa6bUAS1zPJXkuQ5W2XnYzxbcf5OthLW4QRBnoB00xj47hBzW'>
-                    <Checkout amount={qty * rate} />
+                    <Checkout amount={qty / rate} />
                 </StripeProvider>
             </SafeAreaView>
         </TouchableWithoutFeedback>

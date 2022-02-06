@@ -15,12 +15,12 @@ const Checkout = (props: Props) => {
     const order = async () => {
         try {
             const finalAmount = props.amount > 1 ? props.amount : 1;
-            const response = await fetch("https://www.smrth.dev/api/carbon-back/order", {
+            const response = await fetch("http://localhost:8080/api/carbon-back/order", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ amount: finalAmount, uid: 'asdhjk123jas' }), // TODO: UID here
+                body: JSON.stringify({ amount: finalAmount, uid: 'john@gmail.com' }), // TODO: UID here
             });
             const data = await response.json();
             if (!response.ok) {
