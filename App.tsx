@@ -12,6 +12,7 @@ import Info from './components/screen-handlers/Info';
 import Money from './components/screen-handlers/Money';
 import Authenticate from './screens/Authenticate';
 import ContractHistory from './screens/ContractHistory';
+import ExpoStatusBar from 'expo-status-bar/build/ExpoStatusBar';
 
 
 const Tab = createBottomTabNavigator();
@@ -73,6 +74,7 @@ export default function App() {
           <Tab.Screen name="Money" component={Money} />
         </Tab.Navigator>
       </NavigationContainer>
+      <ExpoStatusBar style={'dark'} />
     </ToastProvider>
   );
 }
