@@ -80,9 +80,9 @@ const Authenticate = () => {
                     <View style={[Styles.authInput, Styles.selectUserRoleContainer]}>
                         <Text style={Styles.h4}>Buy</Text>
                         <Switch
-                            trackColor={{ false: Colors.red, true: Colors.green }}
+                            trackColor={{ false: Colors.primaryVariant, true: Colors.primary }}
                             thumbColor={Colors.white}
-                            ios_backgroundColor={Colors.red}
+                            ios_backgroundColor={Colors.primaryVariant}
                             onValueChange={() => setIsEnabled(previousState => !previousState)}
                             value={isEnabled}
                         />

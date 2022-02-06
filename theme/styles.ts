@@ -19,6 +19,7 @@ const Styles = StyleSheet.create({
         fontFamily: 'BebasNeueRegular',
         fontSize: 85,
         color: Colors.text,
+        marginHorizontal: 20,
     },
     h1: {
         fontFamily: 'MontserratBold',
@@ -89,11 +90,12 @@ const Styles = StyleSheet.create({
     },
     authSubmitContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 20
+        justifyContent: 'center',
+        marginTop: 20,
+        width: '75%',
     },
     authSubmitButton: {
-        width: 100,
+        width: 90,
         flexDirection: 'row',
         justifyContent: 'center',
     },

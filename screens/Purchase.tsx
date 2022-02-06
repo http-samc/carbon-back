@@ -56,9 +56,8 @@ const Purchase = () => {
                 <Text style={[Styles.h2, { marginBottom: 10 }]}>Details</Text>
                 <Text style={Styles.purchaseDescription}>
                     One Carbon Credit represents 1 ton of Carbon Dioxide removed from the atmosphere over the course one year. Transactions are instantaneous and irreversible.
-                    You will recieve a NFT (Non Fungible Token) to prove your purchase, which you can use to verify with consumers or governmental agencies.
-                    Keep in mind that the duration of each contract is limited to one year. After this period, the Carbon Credit will be destroyed as the ton
-                    of CO2 is no longer in the atmosphere. At this point, will have to purchase more Carbon Credits to continue lowering your footprint.
+                    You will recieve a hosted certificate as your proof of purchase, which you can use to verify with consumers or governmental agencies.
+                    Keep in mind that the duration of each contract is limited to one year. You do not get a ton of CO2 removed annually in perpituity without repurchasing.
                 </Text>
                 {/* @ts-ignore */}
                 <StripeProvider publishableKey='pk_test_51KQ8BeL1Sbu4VnBadepvuKhlBEyPg6eHW8IHCTcQ8rCLXnXFefa6bUAS1zPJXkuQ5W2XnYzxbcf5OthLW4QRBnoB00xj47hBzW'>
