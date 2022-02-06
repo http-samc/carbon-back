@@ -58,6 +58,8 @@ const ContractHistory = () => {
 
     return (
         <SafeAreaView>
+            <Text style={[Styles.h1, { marginBottom: 5, alignSelf: 'center' }]}>Contract History</Text>
+
             <View style={Styles.contractHistoryStatsWrapper}>
                 <SquareStatistic text={credits} units="credits" />
                 <SquareStatistic text={contracts.length} units="contracts" />

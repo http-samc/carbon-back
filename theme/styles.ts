@@ -20,6 +20,11 @@ const Styles = StyleSheet.create({
         fontSize: 95,
         color: Colors.text,
     },
+    h1: {
+        fontFamily: 'MontserratBold',
+        color: Colors.secondary,
+        fontSize: 38,
+    },
     h2: {
         fontFamily: 'MontserratBold',
         color: Colors.secondary,
@@ -197,7 +202,27 @@ const Styles = StyleSheet.create({
         color: Colors.secondary,
         fontFamily: 'MontserratBold',
         fontSize: 18,
+    },
+
+    // CapacityInfo.txt
+    capacityInfoContainer: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: '100%',
+    },
+    requestCapacityBtn: {
+        width: 350,
+        borderColor: Colors.secondary,
+        borderWidth: 1,
+        padding: 10,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 10,
+        marginBottom: 20,
     }
+
 });
 
 export default Styles;
